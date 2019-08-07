@@ -1,0 +1,211 @@
+[
+  {
+    "ID" : "A01",
+    "name" : "客厅布艺沙发",
+    "num" : "12",
+    "L-price" : "2980",
+    "P-price" : "2680",
+    "operate" : ""
+  },
+  {
+    "ID" : "A02",
+    "name" : "现代时尚沙发",
+    "num" : "4",
+    "L-price" : "4009",
+    "P-price" : "3599",
+    "operate" : ""
+  },
+  {
+    "ID" : "A03",
+    "name" : "伸缩地柜茶几",
+    "num" : "13",
+    "L-price" : "2120",
+    "P-price" : "1800",
+    "operate" : ""
+  },
+  {
+    "ID" : "A04",
+    "name" : "小户简约沙发",
+    "num" : "9",
+    "L-price" : "3270",
+    "P-price" : "2890",
+    "operate" : ""
+  },
+  {
+    "ID" : "A05",
+    "name" : "简约电视柜茶几",
+    "num" : "0",
+    "L-price" : "2090",
+    "P-price" : "1690",
+    "operate" : ""
+  },
+  {
+    "ID" : "A06",
+    "name" : "现代百搭沙发",
+    "num" : "9",
+    "L-price" : "2420",
+    "P-price" : "2020",
+    "operate" : ""
+  },
+  {
+    "ID" : "A07",
+    "name" : "现代简约电视柜",
+    "num" : "3",
+    "L-price" : "1230",
+    "P-price" : "1030",
+    "operate" : ""
+  },
+  {
+    "ID" : "B01",
+    "name" : "现代实木餐桌",
+    "num" : "12",
+    "L-price" : "3020",
+    "P-price" : "2820",
+    "operate" : ""
+  },
+  {
+    "ID" : "B02",
+    "name" : "时尚餐桌椅组合",
+    "num" : "5",
+    "L-price" : "4780",
+    "P-price" : "4380",
+    "operate" : ""
+  },
+  {
+    "ID" : "B03",
+    "name" : "典雅餐桌组合",
+    "num" : "7",
+    "L-price" : "3299",
+    "P-price" : "2999",
+    "operate" : ""
+  },
+  {
+    "ID" : "B04",
+    "name" : "简约餐桌椅组合",
+    "num" : "13",
+    "L-price" : "3820",
+    "P-price" : "3400",
+    "operate" : ""
+  },
+  {
+    "ID" : "B05",
+    "name" : "书桌椅组合",
+    "num" : "2",
+    "L-price" : "1880",
+    "P-price" : "1600",
+    "operate" : ""
+  },
+  {
+    "ID" : "B06",
+    "name" : "家用餐桌椅组合",
+    "num" : "0",
+    "L-price" : "2898",
+    "P-price" : "2500",
+    "operate" : ""
+  },
+  {
+    "name" : "卧室实木双人床",
+    "num" : "4",
+    "L-price" : "1860",
+    "ID" : "C01",
+    "P-price" : "1500",
+    "operate" : ""
+  },
+  {
+    "name" : "卧室双人床组合",
+    "num" : "9",
+    "L-price" : "3404",
+    "ID" : "C02",
+    "P-price" : "3199",
+    "operate" : ""
+  },
+  {
+    "name" : "现代卧室双人床",
+    "num" : "0",
+    "L-price" : "2890",
+    "ID" : "C03",
+    "P-price" : "2690",
+    "operate" : ""
+  },
+  {
+    "name" : "卧室简约双人床",
+    "num" : "1",
+    "L-price" : "2390",
+    "ID" : "C04",
+    "P-price" : "2090",
+    "operate" : ""
+  },
+  {
+    "name" : "欧式卧室双人床",
+    "num" : "4",
+    "L-price" : "3980",
+    "ID" : "C05",
+    "P-price" : "3600",
+    "operate" : ""
+  },
+  {
+    "name" : "时尚卧室双人床",
+    "state" : "未送达",
+    "num" : "21",
+    "L-price" : "3090",
+    "ID" : "C06",
+    "P-price" : "2800",
+    "operate" : ""
+  },
+  {
+    "name" : "四门实木衣柜",
+    "num" : "7",
+    "L-price" : "6790",
+    "ID" : "D01",
+    "P-price" : "6390",
+    "operate" : ""
+  },
+  {
+    "name" : "三门现代衣柜",
+    "num" : "13",
+    "L-price" : "4999",
+    "ID" : "D02",
+    "P-price" : "4599",
+    "operate" : ""
+  },
+  {
+    "name" : "三门时尚衣柜",
+    "num" : "0",
+    "L-price" : "4690",
+    "ID" : "D03",
+    "P-price" : "4290",
+    "operate" : ""
+  },
+  {
+    "name" : "四门欧式衣柜",
+    "num" : "2",
+    "L-price" : "5790",
+    "ID" : "D04",
+    "P-price" : "5400",
+    "operate" : ""
+  },
+  {
+    "name" : "现代简约鞋柜",
+    "num" : "3",
+    "L-price" : "1090",
+    "ID" : "E01",
+    "P-price" : "890",
+    "operate" : ""
+  },
+  {
+    "name" : "实木鞋柜",
+    "num" : "4",
+    "L-price" : "1690",
+    "ID" : "E02",
+    "P-price" : "1400",
+    "operate" : ""
+  }
+,{
+  "name" : "现代衣帽架",
+  "num" : "7",
+  "L-price" : "390",
+  "ID" : "F01",
+  "P-price" : "300",
+  "operate" : ""
+}
+]

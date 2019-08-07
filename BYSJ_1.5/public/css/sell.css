@@ -1,0 +1,278 @@
+a:hover{
+    text-decoration: none;
+}
+.nav > li > a{
+    font-size: 16px;
+}
+/*小标题*/
+#title{
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    border-bottom: 2px solid #0c7cb5;
+    padding-top:12px;
+}
+#title>diV:nth-child(1){
+    margin-left:170px ;
+    float: left;
+}
+#title>div>span{
+    font-size: 18px;
+}
+#title>div>span:nth-child(1){
+    font-weight: bold;
+}
+#back-sy1{
+    float: right;
+    margin-right: 162px;
+    margin-top: -5px;
+}
+
+#main{
+    /*border: 1px dashed black;*/
+    min-height: 800px;
+    background-color: #fff;
+    padding-top:20px;
+}
+.navbar{
+    margin: 0;
+}
+#process{
+    height: 100px;
+    /*border: 1px solid black;*/
+}
+#content {
+    min-height: 680px;
+    border: 1px solid black;
+    overflow: scroll;
+}
+#np{
+    height: 50px;
+    border: 1px solid black;
+}
+.steps{
+
+}
+.step{
+    width:20%;
+    height: 90px;
+}
+#content-1{
+    height: 90% ;
+}
+#content-1>div button{
+    display: block;
+    margin:30% auto;
+}
+#pay-show>div{
+    font-size: 16px;
+    margin-top: 10px;
+}
+/*全部商品*/
+.slider {
+    height: 180px;
+    width: 790px;
+    margin: 10px auto;
+    position: relative;
+}
+
+.slider li {
+    position: absolute;
+    display: none;
+}
+
+.slider li:first-child {
+    display: block;
+}
+
+
+.arrow {
+    display: none;
+}
+
+.slider:hover .arrow {
+    display: block;
+}
+
+.arrow-left,
+.arrow-right {
+    font-family: "SimSun", "宋体";
+    width: 30px;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    margin-top: -30px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 60px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.arrow-left:hover,
+.arrow-right:hover {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.arrow-left {
+    left: 0;
+}
+
+.arrow-right {
+    right: 0;
+}
+#yesr{
+    width: 950px;
+    height: 600px;
+    margin-top: 100px;
+}
+#dpxs{
+    width: 400px;
+    height: 400px;
+}
+#jjzl{
+    width: 400px;
+    height: 400px;
+}
+
+
+.sidebar {
+    /*定位*/
+    position: fixed;
+    left: 0;
+    top: 350px;
+    /*div大小*/
+    width: 60px;
+    height: 250px;
+    /*阴影设置*/
+    -webkit-box-shadow:  0 0 10px 0 rgba(0,0,0,0.8);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.8);
+    /*堆叠顺序：最高*/
+    z-index: 999;
+    /*内容会被修建*/
+    overflow: hidden;
+}
+/*菜单总样式设置：向左浮动，大小，背景颜色*/
+.sidebar .menus {
+    float: left;
+    width: 160px;
+    height: 100%;
+    background-color: white;
+}
+/*菜单里ul设置：内边距上下5，左右0*/
+.sidebar .menus .ul{
+    padding:5px 0;
+}
+/*菜单里ul中li属性：定位类型，字体大小*/
+.sidebar .menus ul li {
+    position: relative;
+    font-size:14px;
+}
+/*...下a标签属性：显示块，高度，文字上下间距，字体颜色，外边距：左右0，上下5*/
+.sidebar .menus ul li a{
+    display: block;
+    height:50px;
+    line-height:50px;
+    color:#888;
+    margin:0 5px;
+}
+/*...下a标签鼠标选中状态设置：字体颜色，背景颜色，圆角边框*/
+.sidebar .menus ul li a:hover{
+    color: #fff;
+    background-color: #4a5064;
+    border-radius:5px;
+}
+/*...下span标签设置：左外边距*/
+.sidebar .menus ul li span{
+    margin-left:55px;
+}
+/*...下secinds标签点击状态加粗，字体颜色改变*/
+.sidebar .menus .active .seconds {
+    color: #000;
+    font-weight:bold;
+    background-color: #888;
+}
+/*选中后再用鼠标覆盖为白色*/
+.sidebar .menus .active a:hover{
+    background-color: #888;
+}
+.sidebar .menus .has-arrow::after{
+    border-color: #212529;
+}
+/*侧边栏 end*/
+
+/*<!--代办-->*/
+.itemsLayer{position: absolute; width: 20%; height: 235px; bottom: 26px;right:3px;overflow:hidden;z-index:10}
+.itemsLayer .iMod{width: 100%; height: 100%; line-height: 40px; border: 1px solid #dcdedd; background: rgba(255, 255, 255, 0.8);}
+.itemsLayer .iMod .tit{display: inline-block; height: 30px; line-height: 30px; font-weight: bold; padding: 0 10px; font-size: 14px; color: #ca2121; margin: 5px 15px 0 0; border-right: 2px solid #ca2121;}
+.itemsLayer .iMod .swiper_wrap{position: relative; width: 100%; height: 194px; overflow: hidden;}
+.itemsLayer .iMod .swiper_wrap ul{position: relative; top: 0; left: 0; width: 100%; height: 38px;}
+.itemsLayer .iMod .swiper_wrap ul li{position: relative; height: 38px; line-height: 38px; padding-left: 35px;}
+.itemsLayer .iMod .swiper_wrap ul li i{position: absolute; left: 10px; top: 14px; width: 10px; height: 10px; border-radius: 50%;}
+.itemsLayer .iMod .swiper_wrap ul li span{display: inline-block; font-size: 14px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;}
+.itemsLayer .iMod .swiper_wrap ul li a{color: #666;}
+.itemsLayer .iMod .swiper_wrap ul li a:hover{color: #CA2121}
+.itemsLayer .iMod .swiper_wrap .s-1{background-color: #ff7b41;}
+.itemsLayer .iMod .swiper_wrap .s-2{background-color: #ffb517;}
+.itemsLayer .iMod .swiper_wrap .s-3{background-color: #71ce64;}
+.itemsLayer .iMod .swiper_wrap .w-10{width: 10%}
+.itemsLayer .iMod .swiper_wrap .w-15{width: 28%}
+.itemsLayer .iMod .swiper_wrap .w-20{width: 35%}
+.fl{
+    float: left;
+}
+ul li{
+    list-style-type:none;
+}
+#tog-chart{
+    margin-left: 740px;
+    z-index:11;
+    display: none;
+}
+/*弹出提示*/
+#wel-yy,#wel-adm,#wel-yhtx,#wel-djxg{
+    background-color: #0a0a0a;opacity: 0.7;width:300px;height:50px;border-radius:6px;position: absolute;top:400px;left:800px;display: none;
+}
+#wel-yy span,#wel-adm span,#wel-yhtx span,#wel-djxg span{
+    color: #c0c0c0;font-size: 22px;margin-left: 50px;line-height: 50px
+}
+#tol-sto{position:absolute;right: 2%;top:14%;display: none}
+
+#selfct-tab th{width: 153px}
+@media screen and (max-width: 1024px){
+    #main{/*border: 1px dashed black;*/  min-height: 600px;  }
+    #content-1>div button{  margin:40% auto;  }
+    #pay-show img{ width: 160px;  height: 160px;  }
+    .jumbotron h1{ font-size: 35px;  }
+    .jumbotron p{ font-size:17px;  }
+    .step{ width: 25%;  }
+    #wel-yy,#wel-adm,#wel-yhtx,#wel-djxg{ background-color: #0a0a0a;opacity: 0.7;width:300px;height:50px;border-radius:6px;position: absolute;top:320px;left:365px;display: none;  }
+    #wel-yy span,#wel-adm span,#wel-yhtx span,#wel-djxg span{  color: #c0c0c0;font-size: 22px;margin-left: 50px;line-height: 50px  }
+    #tog-chart{display: block}
+    #yesr{
+        width: 840px;
+        height: 500px;
+        margin-top: 10px;
+    }
+    #dpxs{
+        width: 390px;
+        height: 300px;
+        float: left;
+    }
+    #jjzl{
+        width: 390px;
+        height: 300px;
+        float: left;
+    }
+    #bt-tog{
+        display: none;
+        margin-top: 100px;
+    }
+    .sidebar{
+        top:260px
+    }
+    #tol-sto{right: 6px;top:14%}
+    .navbar-header{display: none}
+}

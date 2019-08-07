@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=620px,initial-scale=1,target-densitydpi=device-dpi,minimum-scale=1,maximum-scale=1,user-scalable=1" />
+    <title>电子家具销售系统</title>
+    <link rel="icon" href="/public/img/logo.png" sizes="32x32">
+    <link rel="stylesheet" href="/public/lib/semantic.css">
+    <link rel="stylesheet" href="/public/lib/bootstrap.css">
+    <link rel="stylesheet" href="/public/lib/bootstrap-table.css">
+    <link rel="stylesheet" href="/public/css/sell.css">
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background: url("/public/img/bg1.png")center no-repeat;
+        }
+        ul li{
+            list-style: none;
+        }
+        div{
+            /*border:1px dashed #00B5AD;*/
+        }
+
+    </style>
+</head>
+<body style="overflow-x: hidden">
+<!--导航-->
+<div>
+    <nav class="navbar navbar-default navbar-static-top navbar-inverse" >
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" style="padding-top:12px;">
+                    <img src="/public/img/logo.png" style="width:70px;height: 26px; ">
+                </a>
+                <span style="color: #0a6999;font-size: 20px;line-height:50px;margin-right: 20px">电子家具销售系统</span>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>
+                    <li><a href="#">全部商品</a></li>
+                    <li><a href="#">订单管理</a></li>
+                    <li><a href="#">运营统计</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-user"></span>
+                            用户
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" id="admin"><span class="glyphicon glyphicon-tower"></span>&nbsp;管理员</a></li>
+                            <li><a href="/login" onclick="clearCookie()"><span class="glyphicon glyphicon-export"></span>&nbsp;退出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!--<form class="navbar-form navbar-right">-->
+                    <!--<div class="input-group">-->
+                        <!--<input type="text" class="form-control" placeholder="搜索">-->
+                        <!--<span class="input-group-btn"><button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></span>-->
+                    <!--</div>-->
+                <!--</form>-->
+            </div>
+        </div>
+    </nav>
+</div>
+<!--导航 end-->
+
+<!--小标题-->
+<div id="title" style="display: none;">
+    <div>
+        <span> <span class="glyphicon glyphicon-home"></span> 首页 /</span>&nbsp;
+        <span style="display: none;"><span class="glyphicon glyphicon-list"></span> 全部商品</span>
+        <span style="display: none;"><span class="glyphicon glyphicon-list-alt"></span> 订单管理</span>
+        <span style="display: none;"><span class="glyphicon glyphicon-signal"></span> 运营统计</span>
+    </div>
+    <div>
+        <button type="button" class="btn btn-primary" id="back-sy1">返回首页</button>
+    </div>
+</div>
+
+<!--内容-->
+<div id="main" class="col-xs-10 col-xs-offset-1">
+    <div id="sy" >
+        <!--流程-->
+        <div id="process">
+            <div class="ui ordered steps col-lg-10 col-lg-offset-2 col-xs-12 ">
+                <a class="step">
+                    <div class="content">
+                        <div class="title">对象</div>
+                        <div class="description">
+                            选择销售对象的类型
+                        </div>
+                    </div>
+                </a>
+                <a class="step disabled">
+                    <div class="content">
+                        <div class="title">商品</div>
+                        <div class="description">选择商品属性</div>
+                    </div>
+                </a>
+                <a class="step disabled">
+                    <div class="content">
+                        <div class="title">地址</div>
+                        <div class="description">选择收获地址及联系方式</div>
+                    </div>
+                </a>
+                <a class="step disabled">
+                    <div class="content">
+                        <div class="title">确认</div>
+                        <div class="description">确认订单并支付</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!--流程 end-->
+        <div class="ui horizontal divider" style="font-size: 16px;margin-bottom: 4rem">请填写订单</div>
+        <!--步骤1-->
+        <div id="content-1" class="ui segment" style="display:block;">
+            <div class="col-xs-6">
+                <div>
+                    <button type="button" class="btn btn-success btn-lg" id="pfs">批发商</button>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div>
+                    <button type="button" class="btn btn-info btn-lg" id="lss">零售商</button>
+                </div>
+            </div>
+            <div class="ui vertical divider" style="font-size: 14px">Or</div>
+        </div>
+        <!--步骤2-->
+        <div id="content-2" style="display:none;">
+            <iframe  name="nm_iframe" style="display:none;"></iframe>
+            <form class="form-horizontal" action="/sell/new" method="post" target="nm_iframe">
+                <div class="form-group">
+                    <input type="hidden" name="obj" class="form-control" id="xsdx">
+                    <label  class="col-xs-2 col-xs-offset-2 col-lg-offset-3 control-label">商品编号：</label>
+                    <div class="col-lg-2 col-xs-4">
+                        <input type="text" name="ID" class="form-control" id="spbh" placeholder="请输入商品编号...">
+                    </div>
+                    <button type="button" class="btn btn-primary" id="sell-fct">选择</button>
+                </div>
+                <div class="form-group">
+                    <label  class="col-xs-2 col-xs-offset-2 col-lg-offset-3 control-label">数量：</label>
+                    <div class="col-lg-1 col-xs-2">
+                        <input type="number" name="num" class="form-control" id="num" placeholder="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-xs-2 col-xs-offset-2 col-lg-offset-3 control-label">商品单价：</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="xgjg-inp" placeholder="" disabled >
+                    </div>
+                    <div class="checkbox col-sm-2">
+                        <label>
+                            <input type="checkbox" id="xgjg">修改价格
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-xs-2 col-xs-offset-2 col-lg-offset-3 control-label">商品定做：</label>
+                    <div class="checkbox col-lg-2 col-xs-5">
+                        <label>
+                            <input type="checkbox" id="spdz" name="rem"> 确认定做&nbsp;
+                            <div class="ui pointing red left label" style="font-size: 12px">
+                                定做商品不退不换
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-lg-3 col-xs-5 col-xs-offset-4 col-lg-offset-5" style="margin-top: 10px">
+                        <textarea class="form-control" rows="3" disabled id="spdz-inp"></textarea>
+                    </div>
+                </div>
+                <input type="hidden" name="name" value="">
+                <input type="hidden" name="tel" value="">
+                <input type="hidden" name="ads" value="">
+                <input type="hidden" name="date" value="">
+                <input type="hidden" name="state" value="未发货">
+                <input type="hidden" name="rem" value="">
+                <div class="form-group">
+                    <div class="col-xs-offset-4 col-lg-offset-5 col-xs-2">
+                        <button type="submit" class="btn btn-default" id="assign-fct">确定</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!--步骤3-->
+        <div id="content-3" style="display:none;;">
+            <iframe  name="nm2_iframe" style="display:none;"></iframe>
+            <form class="form-horizontal" action="/sell/edit" method="post" target="nm2_iframe">
+                <input type="hidden" name="ID" id="fid3">
+                <div class="form-group" id="ads-group">
+                    <label  class="col-xs-2 col-xs-offset-2 col-lg-offset-3 control-label">收货地址：</label>
+                    <div class="col-lg-2 col-xs-3">
+                        <select id="provence" class="form-control">
+                            <option value="0" name="provence">请选择</option>
+                            <option value="1" name="provence">云南省</option>
+                            <option value="2" name="provence">四川省</option>
+                            <option value="3" name="provence">贵州省</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-xs-3" >
+                        <select id="city" class="form-control">
+                            <option value="0" name="city">请选择</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4    col-xs-6 col-xs-offset-4 col-lg-offset-5" style="margin-top: 5px">
+                        <input type="text" class="form-control" id="address" placeholder="请输入地址...">
+                        <input type="hidden"  id="address-all" name="ads">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-xs-2 col-xs-offset-2 col-lg-offset-3 control-label">联系人：</label>
+                    <div class="col-lg-2 col-xs-3">
+                        <input type="text" name="name" class="form-control" id="p-name" placeholder="姓名">
+                    </div>
+                    <div class="col-lg-2 col-xs-3">
+                        <input type="tel" name="tel" class="form-control" id="tel" maxlength="11" placeholder="电话号码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-xs-2 col-xs-offset-2 col-lg-offset-3 control-label">日期：</label>
+                    <div class="col-lg-2 col-xs-3">
+                        <input type="date" name="date" class="form-control" id="p-date" placeholder=""  style="padding-top:5px;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-xs-2 col-xs-offset-2 col-lg-offset-3 control-label">备注：</label>
+                    <div class="col-lg-4 col-xs-6">
+                        <textarea class="form-control" name="rem" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-4 col-lg-offset-5 col-xs-2">
+                        <button type="submit" class="btn btn-default" id="assign-adr">确定</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!--步骤4-->
+        <div id="content-4" style="display:none;">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label  class="col-xs-2 col-xs-offset-2 col-lg-offset-3 control-label">商品编号：</label>
+                    <div class="col-lg-3 col-xs-4">
+                        <input type="text" class="form-control" id="spbh-4" placeholder="" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-xs-2 col-xs-offset-2 col-lg-offset-3 control-label">数量：</label>
+                    <div class="col-lg-1 col-xs-2">
+                        <input type="text" class="form-control" id="num-4" placeholder="" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-xs-2 col-xs-offset-2 col-lg-offset-3 control-label">总价：</label>
+                    <div class="col-lg-1 col-xs-2">
+                        <input type="text" class="form-control" id="allP"  placeholder="" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-xs-2 col-xs-offset-2 col-lg-offset-3 control-label">支付方式：</label>
+                    <div class="col-lg-3 col-xs-5">
+                        <ul class="nav nav-tabs" id="pay-sel">
+                            <li role="presentation" class="active"><a href="#">支付宝</a></li>
+                            <li role="presentation"><a href="#">微信</a></li>
+                            <li role="presentation"><a href="#">现金</a></li>
+                            <li role="presentation"><a href="#">银行卡</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3 col-xs-offset-4 col-lg-offset-5" id="pay-show">
+                        <div>
+                            <img src="/public/img/pay.png" width="200" height="200">
+                            <br/>
+                            请使用支付宝支付
+                        </div>
+                        <div style="display: none;">
+                            <img src="/public/img/pay.png" width="200" height="200">
+                            <br/>
+                            请使用微信支付
+                        </div>
+                        <div style="display: none;">请使用现金支付</div>
+                        <div style="display: none;">请使用银行卡支付</div>
+                        <div class="ui divider"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-4 col-lg-offset-5 col-sm-2">
+                        <button type="button" class="btn btn-primary" id="assign-ord">确定</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!--支付成功-->
+        <div class="jumbotron" style="display:none; height: 80%" id="pay-success">
+            <div style="width: 23%;margin: auto">
+                <h1><span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true" style="color:#0ea432;"></span>&nbsp;支付成功</h1>
+                <p>已完成支付并提交订单点击返回按钮返回到首页</p>
+                <p><a class="btn btn-primary btn-lg " href="#" role="button" id="back-sy">返回</a></p>
+            </div>
+
+        </div>
+    </div>
+    <!--导航功能-->
+    <!--全部商品-->
+    <div id="all-fct" style="display:none;">
+        <div class="slider">
+            <ul>
+                <li><a href="#"><img src="/public/img/fct1.png" alt=""></a></li>
+                <li><a href="#"><img src="/public/img/fct2.png" alt=""></a></li>
+                <li><a href="#"><img src="/public/img/fct3.png" alt=""></a></li>
+                <li><a href="#"><img src="/public/img/fct4.png" alt=""></a></li>
+            </ul>
+            <!--箭头-->
+            <div class="arrow">
+                <span class="arrow-left">&lt;</span>
+                <span class="arrow-right">&gt;</span>
+            </div>
+        </div>
+        <iframe  name="qbsp_iframe" style="display:none;"></iframe>
+        <table id="fct-table"></table>
+    </div>
+    <!--订单管理-->
+    <div id="ddgl" style="display:none;">
+        <button class="btn btn-primary" style="position:absolute;" id="pst-dd"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+        <table id="dd-table"></table>
+    </div>
+    <!--运营统计-->
+    <div id="yytj"  style="display:none;">
+        <button class="btn btn-primary" id="tog-chart">切换</button>
+        <div class="col-lg-8" id="zt-tog">
+            <div>
+                <div id="yesr">营业额</div>
+            </div>
+        </div>
+        <div class="col-lg-4" id="bt-tog">
+            <div>
+                <div id="dpxs">单品销售情况</div>
+                <div id="jjzl">家具种类销售情况</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--模态框-->
+<!--选择家具-->
+<div class="modal fade" id="selfct-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content" style="width: 730px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    <span class=".glyphicon .glyphicon-shopping-cart"></span>
+                    选择商品
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div id="selfct-tab"   style=""></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    关闭
+                </button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="conf-selfct">
+                    确定
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!--foot-->
+<div id="foot"></div>
+
+<!--代办-->
+<div id="item-tip-h" style="opacity:0.8;display: none;text-align: center;background-color:#fff;width:40px;height: 235px;border:1px solid #dddddd;line-height: 18px;  padding: 10px; font-size: 14px;position:absolute;right:0;bottom:26px;">
+    <div style=" color: #ca2121;margin-bottom: 55px;font-weight: bold; font-size: 14px;">
+        代办任务
+    </div>
+    <i class="glyphicon glyphicon-chevron-left" style="position:absolute;right:2px;top:96px;cursor: pointer;font-size:26px" id="open-iy"></i>
+    <span style="">共<b id="jishu-v" style="color: #ca2121;"></b>条待办</span>
+</div>
+<div id="item-tip">
+    <div class="itemsLayer">
+        <div class="iMod">
+            <div class="tit fl">代办任务
+            </div>
+            <i class="glyphicon glyphicon-chevron-right" style="float: right;cursor: pointer;top:10px;right: 10px" id="close-iy"></i>
+            <span style="float: right;margin-right: 40px">共<b id="jishu"></b>条待办</span>
+            <div class="swiper_wrap fl">
+                <ul class="font_inner" id="testBB" style="padding-left:5px;margin-top: 0">
+                    <li>
+                        <a href="#" class="thcl_db">
+                            <i class="s-1"></i>
+                            <span class="w-20">1、退货处理</span>
+                            <span class="w-15"></span>
+                            <span class="w-15">2018-10-26 10:37:13</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="xzkc-db">
+                            <i class="s-1"></i>
+                            <span class="w-20">2、新增库存</span>
+                            <span class="w-15"></span>
+                            <span class="w-15">2018-10-27 9:37:13</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="xpsj_db">
+                            <i class="s-1"></i>
+                            <span class="w-20">3、新品上架</span>
+                            <span class="w-15"></span>
+                            <span class="w-15">2018-10-12 9:45:50</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="thcl_db">
+                            <i class="s-1"></i>
+                            <span class="w-20">4、退货处理</span>
+                            <span class="w-15"></span>
+                            <span class="w-15">2019-03-12 9:45:50</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="xzkc-db">
+                            <i class="s-1"></i>
+                            <span class="w-20">5、新增库存</span>
+                            <span class="w-15"></span>
+                            <span class="w-15">2019-01-12 9:45:50</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="xzkc-db">
+                            <i class="s-1"></i>
+                            <span class="w-20">6、新增库存</span>
+                            <span class="w-15"></span>
+                            <span class="w-15">2019-03-02 9:45:50</span>
+                        </a>
+                    </li><li>
+                    <a href="#" class="xpsj_db">
+                        <i class="s-1"></i>
+                        <span class="w-20">7、新品上架</span>
+                        <span class="w-15"></span>
+                        <span class="w-15">2018-10-12 9:45:50</span>
+                    </a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--管理员模式-->
+    <!--模态框-->
+        <!--缺货提醒-->
+<div class="mod col-xs-3">
+    <div class="modal fade" id="qhtx-mod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "static">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        确认提醒库房增加库存！
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form action="/sell/qhtx" method="post" target="qbsp_iframe">
+                        <input type="hidden" id="qh_id" name="ID" >
+                        <input type="hidden" id="qh_name" name="name" >
+                        <input type="hidden" id="qh_num" name="num" >
+                        <div style="margin-left: 80px">
+                            <button type="submit" class="btn btn-primary" id="asc-qh">
+                                确定
+                            </button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                关闭
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+        <!--运营验证-->
+<div class="mod col-xs-3">
+    <div class="modal fade" id="myModal0" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "static">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabe0">
+                        请输入验证码
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" placeholder="请输入验证码...">
+                    <div id="yzm-err" style="display:none;">
+                        <p style="color: #9F3A38;">验证码错误！</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="button" class="btn btn-primary" id="asc-yzm">
+                        确定
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+        <!--管理员验证-->
+<div class="mod col-xs-3">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop = "static">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabe">
+                        请输入管理员密码
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <input type="password" class="form-control" placeholder="请输入密码...">
+                    <div id="mm-err" style="display:none;">
+                        <p style="color: #9F3A38;">密码错误！</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="button" class="btn btn-primary" id="asc-mm">
+                        确定
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+    <!--侧边栏-->
+<div class="sidebar" style="display: none">
+    <div class="menus" data-msc-theme="minimal-dark">
+        <ul id="adm-f">
+            <li>
+                <a href="javascript:;" class="has-arrow seconds">
+                    <span class="glyphicon  glyphicon-user" style="margin-left:15px;margin-top:10px;font-size: 25px;position:absolute"></span>
+                    <span>人员管理</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;" class="has-arrow seconds">
+                    <span class="glyphicon glyphicon-briefcase" style="margin-left:15px;margin-top:10px;font-size: 25px;position:absolute"></span>
+                    <span>账号管理</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;" class="has-arrow seconds">
+                    <span class="glyphicon glyphicon-yen" style="margin-left:15px;margin-top:10px;font-size: 25px;position:absolute"></span>
+                    <span>定价修改</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;" class="has-arrow seconds" >
+                    <span class="glyphicon glyphicon-usd" style="margin-left:15px;margin-top:10px;font-size: 25px;position:absolute"></span>
+                    <span>薪酬管理</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;" class="has-arrow seconds" >
+                    <span class="glyphicon glyphicon-stats" style="margin-left:15px;margin-top:10px;font-size: 25px;position:absolute"></span>
+                    <span>利润统计</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+    <!--转到库房-->
+<div  id="tol-sto">
+    <a href="/store"><button class="btn btn-primary"><span class="glyphicon glyphicon-sort"></span> 库房</button></a>
+</div>
+<!--管理员模块功能-->
+<div id="adm-ft">
+    <!--人员管理-->
+    <div class="modal fade" id="person-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        <span class="glyphicon  glyphicon-user"></span>
+                        人员管理
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="ui celled table">
+                        <thead>
+                        <tr><th>员工名称</th>
+                            <th>性别</th>
+                            <th>年龄</th>
+                            <th>职位</th>
+                            <th>联系电话</th>
+                        </tr></thead>
+                        <tbody>
+                        <tr>
+                            <td>张三</td>
+                            <td>男</td>
+                            <td>32</td>
+                            <td>店长</td>
+                            <td>12839281723</td>
+                        </tr>
+                        <tr>
+                            <td>李四</td>
+                            <td>女</td>
+                            <td>26</td>
+                            <td>销售员</td>
+                            <td>17829372683</td>
+                        </tr>
+                        <tr>
+                            <td>赵六</td>
+                            <td>男</td>
+                            <td>41</td>
+                            <td>库房管理员</td>
+                            <td>18273940854</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        确定
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!--账号管理-->
+    <div class="modal fade" id="usen-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        <span class="glyphicon glyphicon-briefcase"></span>
+                        账号管理
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="ui placeholder segment">
+                        <div class="ui two column very relaxed stackable grid">
+                            <div class="column">
+                                <h3>注册账户</h3>
+                                <div class="ui form"  style="font-size: 14px">
+                                    <div class="field">
+                                        <label>账号</label>
+                                        <div class="ui left input">
+                                            <input type="text">
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label>密码</label>
+                                        <div class="ui left input">
+                                            <input type="password">
+                                        </div>
+                                    </div>
+                                    <div class="ui green submit button">注册</div>
+                                </div>
+                            </div>
+                            <div class="middle aligned column">
+                                <h3>修改密码</h3>
+                                <div class="ui form" style="font-size: 14px">
+                                    <div class="field">
+                                        <label>账号</label>
+                                        <div class="ui input">
+                                            <input type="text">
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label>密码</label>
+                                        <div class="ui input">
+                                            <input type="password">
+                                        </div>
+                                    </div>
+                                    <div class="ui black submit button">修改</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui vertical divider">
+                            Or
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        确定
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!--定价修改-->
+    <div class="modal fade" id="price-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        <span class="glyphicon glyphicon-yen"></span>
+                       定价修改
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" action="/sell/djxg" method="post" target="djxg_iframe">
+                        <input type="hidden" name="ID" class="form-control" id="xg-spbh" >
+                        <div class="form-group">
+                            <label  class="col-sm-4  control-label">商品名称：</label>
+                            <div class="col-sm-5">
+                                <input type="text" name="name" class="form-control"  id="xg-name" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="col-sm-4  control-label">批发价：</label>
+                            <div class="col-sm-5">
+                                <input type="text" name="P-price" class="form-control" id="P-price"  placeholder="请输入批发价">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="col-sm-4  control-label">零售价：</label>
+                            <div class="col-sm-5">
+                                <input type="text" name="L-price" class="form-control" id="L-price"  placeholder="请输入零售价">
+                            </div>
+                        </div>
+                        <div style="margin-left: 450px">
+                            <button type="submit" class="btn btn-primary" id="conf-djxg">
+                                确定
+                            </button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                关闭
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <div class="col-xs-8 col-xs-offset-2" style="background-color: #fff;height: 50%;display: none" id="djxg">
+        <iframe  name="djxg_iframe" style="display:none;"></iframe>
+        <div id="dj-title" style=" width: 100%;height: 50px; background-color: #fff;border-bottom: 2px solid #0c7cb5;padding-top:12px;">
+            <div style="margin-left:20px ;float: left;font-size: 18px;">
+                <span style="display: inline;font-weight: bold"> <span class="glyphicon glyphicon-home"></span> 首页 /</span>&nbsp;
+                <span style=""><span class="glyphicon glyphicon-yen"></span>&nbsp;定价修改</span>
+            </div>
+            <div style="">
+                <button type="button" class="btn btn-primary" id="back" style=" float: right;margin-right: 20px; margin-top: -5px;">返回</button>
+            </div>
+        </div>
+        <table id="djxg-tab" ></table>
+    </div>
+    <!--薪酬管理-->
+    <div class="modal fade" id="pay-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        <span class="glyphicon glyphicon-usd"></span>
+                        薪酬管理
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="ui celled table">
+                        <thead>
+                        <tr><th>员工名称</th>
+                            <th>职位</th>
+                            <th>应发工资</th>
+                        </tr></thead>
+                        <tbody>
+                        <tr>
+                            <td>张三</td>
+                            <td>店长</td>
+                            <td>7870</td>
+                        </tr>
+                        <tr>
+                            <td>李四</td>
+                            <td>销售员</td>
+                            <td>5490</td>
+                        </tr>
+                        <tr>
+                            <td>赵六</td>
+                            <td>库房管理员</td>
+                            <td>6200</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        确定
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!--利润统计-->
+    <div class="modal fade" id="pft-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        <span class="glyphicon glyphicon-stats"></span>
+                        利润统计
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div id="pft-char" style="height:300px;width: 880px"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        确定
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+
+<!--提示-->
+<!--运营-->
+<div id="wel-yy">
+    <span>欢迎来到运营专题！</span>
+</div>
+<!--管理员-->
+<div  id="wel-adm">
+    <span>已进入管理员模式！</span>
+</div>
+<!--要货提醒-->
+<div id="wel-yhtx">
+    <span>已提示库房缺货！</span>
+</div>
+<!--定价修改-->
+<div id="wel-djxg">
+    <span> 定价修改已成功！</span>
+</div>
+
+
+<script type="text/javascript" src="/public/lib/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="/public/lib/jq-cookie.js"></script>
+<script type="text/javascript" src="/public/lib/login-index.js"></script>
+<script type="text/javascript" src="/public/lib/FileSaver.js"></script>
+<script type="text/javascript" src="/public/lib/jquery.wordexport.js"></script>
+<script type="text/javascript" src="/public/lib/semantic.js"></script>
+<script type="text/javascript" src="/public/lib/echarts.js"></script>
+<script type="text/javascript" src="/public/lib/bootstrap.js"></script>
+<script type="text/javascript" src="/public/lib/bootstrap-table.js"></script>
+<script type="text/javascript" src="/public/lib/bootstrap-table-zh-CN.js"></script>
+<script type="text/javascript" src="/public/js/sell.js"></script>
+<!-- itemsLayer -->
+<script type="text/javascript">
+    $(function () {
+//        代办
+        // 收缩按钮
+        $("#close-iy").on('click', function () {
+            $(".itemsLayer").animate({right:-385}, 1000);
+            $("#open-iy").parent().show();
+        });
+        // 展开按钮
+        $("#open-iy").on('click',function () {
+            $(this).parent().hide();
+            $(".itemsLayer").animate({right:1}, 1000);
+        })
+        var $li = $(".font_inner li");
+        if($li.length>5){
+//    轮播
+            var liHeight = 38;//一个li的高度
+            //获取li的总高度再减去一个li的高度(再减一个Li是因为克隆了多出了一个Li的高度)
+            var totalHeight = ($li.length *  $li.eq(0).height()) -liHeight;
+
+            var index = 0;
+            var autoTimer = 0;//全局变量目的实现左右点击同步
+            var clickEndFlag = true; //设置每张走完才能再点击
+//    有几个li就循环克隆几次 无缝
+            $(".font_inner li").clone().appendTo($(".font_inner"));//克隆第一个放到最后(实现无缝滚动)
+            $(".font_inner").height(totalHeight);//给ul赋值高度
+
+            function tab(){
+                $(".font_inner").stop().animate({
+                    top: -index * liHeight
+                },400,function(){
+                    clickEndFlag = true;//图片走完才会true
+                    if(index == $li.length) {
+                        $(".font_inner").css({top:0});
+                        index = 0;
+                    }
+                });
+            }
+
+            function next() {
+                index++;
+                if(index > $li.length) {//判断index为最后一个Li时index为0
+                    index = 0;
+                }
+                tab();
+            }
+
+
+            //自动轮播
+            autoTimer = setInterval(next,2000);
+            $(".font_inner a").hover(function(){
+                clearInterval(autoTimer);
+            },function() {
+                autoTimer = setInterval(next,2000);
+            });
+
+            //鼠标放到左右方向时关闭定时器
+            $(".swiper_wrap .lt,.swiper_wrap .gt").hover(function(){
+                clearInterval(autoTimer);
+            },function(){
+                autoTimer = setInterval(next,3000);
+            });
+        }
+
+
+    })
+</script>
+
+<script type="text/javascript">
+    $(function () {
+//        加载底部信息
+        $("#foot").load('/public/foot.html');
+
+//        $('#person-modal') .modal('show');
+        $("#usen-modal,#person-modal,#pay-modal,#pft-modal,#qhtx-mod,#price-modal").css({
+            position: "fix",
+            top:"240px"
+        });
+        $("#selfct-modal").css({
+            position: "fix",
+            top:"100px"
+        });
+    });
+    window.onload = function () {
+        //        管理员cookie验证
+        if($.cookie('username')!=null){
+            console.log("得到cookie");
+            $("#myModal").modal('hide');
+            $(".sidebar").show();
+            $("#tol-sto").show();
+            $("#admin").parent().hide();
+            $('#myModal').on('hidden.bs.modal', function () {
+                $("#wel-adm").show(200).delay(1500).hide(200);
+            });
+        }
+    }
+</script>
+</body>
+</html>

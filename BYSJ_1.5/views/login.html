@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=620px,initial-scale=1,target-densitydpi=device-dpi,minimum-scale=1,maximum-scale=1,user-scalable=1" />
+    <link rel="icon" href="/public/img/logo.png" sizes="32x32">
+    <title>电子家具销售系统登录</title>
+    <link rel="stylesheet" href="/public/lib/bootstrap.css">
+    <style>
+        body{
+            background: url("/public/img/bg.png") top left no-repeat;
+        }
+        .loDv{
+            width: 370px;
+            height:250px;
+            background: #fff;
+            border:2px solid #7b8993;
+            border-radius: 30px;
+            position: absolute;
+            top:44%;
+            right: 16%;
+            padding:50px 40px 0 0 ;
+            z-index: 99;
+
+        }
+        .loDv .form-group{
+            margin-bottom: 20px;
+        }
+        .loDv>form>div:nth-child(4){
+            margin-top:30px;
+            margin-bottom:30px;
+        }
+        .loDv>form>div:nth-child(5)>div>button{
+            margin-right: 10px;
+            width: 100px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="loDv">
+    <form class="form-horizontal" >
+        <div class="form-group">
+            <label for="username" class="col-sm-4 control-label">账号：</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="username" placeholder="请输入账号...">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword" class="col-sm-4 control-label">密码：</label>
+            <div class="col-sm-8">
+                <input type="password" class="form-control" id="inputPassword" placeholder="请输入密码...">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+                <button type="button" class="btn btn-primary btn-block" id="login">登录</button>
+                <div id="log-err" style="display: none ;">
+                   <span style="color: #9e0000">用户名或密码错误！</span>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<div id="foot"></div>
+
+<script src="/public/lib/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="/public/lib/jq-cookie.js"></script>
+<script src="/public/lib/bootstrap.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //        加载底部信息
+        $("#foot").load('/public/foot.html');
+    });
+        $("#login").click(function () {
+            var  $name = $("#username").val();
+            var $psw = $("#inputPassword").val();
+//            console.log($name);
+//            console.log($psw);
+            if($name == 'sell' &&  $psw == 'sell'){
+                $(location).attr('href', '/sell');
+            }else if ($name == 'store' &&  $psw == 'store'){
+                $(location).attr('href', '/store');
+            }else if ($name == 'admin' &&  $psw == 'admin'){
+                setCookie();
+                $(location).attr('href', '/sell');
+            } else{
+                $("#log-err").show();
+            }
+          })
+</script>
+</body>
+</html>
